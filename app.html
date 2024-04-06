@@ -21,6 +21,10 @@
             color: greenyellow;
         }
 
+        .score{
+            color: lightgreen;
+        }
+
         button {
             background-color: darkblue;
         }
@@ -46,7 +50,7 @@
             const buttons =
                 document.getElementById('app').innerHTML = /*HTML*/`
                 <p class="gray">gjette-faktor-appen-ultra-bultra<p>
-                <p>Score: ${score}</p>
+                <p class="score">Score: ${score}</p>
                 <p>Er det en faktor ${factor} i tallet ${number}?</p>
                 <h1>${isRunning ? /*HTML*/`
                     <div>
