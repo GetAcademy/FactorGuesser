@@ -1,24 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            text-align: center;
+        }
+
+        body,
+        button {
+            background-color: black;
+            color: white;
+            font-size: 50pt;
+        }
+
+        h1 {
+            color: greenyellow;
+        }
+
+        button {
+            background-color: darkblue;
+        }
+
+        .gray {
+            color: lightblue;
+            font-size: 30pt;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
-<body>
+
+<body onload="init()">
     <div id="app"></div>
     <script>
         let factor = 2;
         let number = 101;
+        let score = 0;
+        let isRunning = true;
 
         updateView();
-        function updateView(){
-            document.getElementById('app').innerHTML = /*HTML*/`
-                <h1>Faktor-gjette-appen-ultra-bultra</h1>            
-                ${number}
+        function updateView() {
+            const buttons =
+                document.getElementById('app').innerHTML = /*HTML*/`
+                <p class="gray">gjette-appen-ultra-bultra<p>
+                <p>Score: ${score}</p>
+                <p>Er det en faktor ${factor} i tallet ${number}?</p>
+                <h1>${isRunning ? /*HTML*/`
+                    <div>
+                        <button onclick="guess(true)">Ja</button>
+                        <button onclick="guess(false)">Nei</button>
+                    </div>` : 'Game over'}
             `;
+        }
+
+        function guess(answer) {
+            if (number % factor == 0 && answer || number % factor != 0 && !answer) {
+                score += factor;
+                do {
+                    factor++;
+                } while (!isPrime(factor));
+
+            } else {
+                isRunning = false;
+            }
+            setRandomNumber();
+            updateView();
+        }
+
+        function setRandomNumber() {
+            number = 100 + Math.floor(Math.random() * 50 * factor);
+        }
+
+        function init() {
+            setRandomNumber();
+            updateView();
+        }
+
+        function isPrime(number) {
+            for (let factor = 2; factor < number; factor++) {
+                if (number % factor == 0) return false;
+            }
+            return true;
         }
 
     </script>
 </body>
+
 </html>
