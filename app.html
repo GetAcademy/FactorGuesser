@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        let factor = 2;
+        let number = 101;
+
+        updateView();
+        function updateView(){
+            document.getElementById('app').innerHTML = /*HTML*/`
+                <h1>Faktor-gjette-appen-ultra-bultra</h1>            
+                ${number}
+            `;
+        }
+
+    </script>
+</body>
+</html>
